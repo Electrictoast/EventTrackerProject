@@ -12,6 +12,8 @@
 		<class>com.skilldistillery.discgolf.entities.Address</class>
 		<class>com.skilldistillery.discgolf.entities.Ammenity</class>
 		<class>com.skilldistillery.discgolf.entities.User</class>
+		<class>com.skilldistillery.discgolf.entities.Comment</class>
+		<class>com.skilldistillery.discgolf.entities.Rating</class>
 
 	
 
