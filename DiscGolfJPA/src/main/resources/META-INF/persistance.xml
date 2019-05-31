@@ -8,7 +8,10 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
 		<!-- entities -->
-		<class>com.skilldistillery.discgolf.entities.FIXME</class>
+		<class>com.skilldistillery.discgolf.entities.Course</class>
+		<class>com.skilldistillery.discgolf.entities.Address</class>
+		<class>com.skilldistillery.discgolf.entities.Ammenity</class>
+		<class>com.skilldistillery.discgolf.entities.User</class>
 
 	
 
