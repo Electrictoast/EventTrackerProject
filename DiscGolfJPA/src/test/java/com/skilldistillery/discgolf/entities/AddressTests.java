@@ -12,12 +12,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class CourseTests {
+public class AddressTests {
 
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Course course;
+	private Address address;
 
 	@BeforeAll
 	public static void setUpAll() {
@@ -29,13 +29,13 @@ public class CourseTests {
 	@BeforeEach
 	public void setUp() throws Exception {
 		em = emf.createEntityManager();
-		course = em.find(Course.class, 1);
+		address = em.find(Address.class, 1);
 	}
 
 	@AfterEach
 	public void tearDown() throws Exception {
 		em.close();
-		course = null;
+		address = null;
 	}
 
 	@AfterAll
@@ -46,10 +46,10 @@ public class CourseTests {
 	
 	@Test
 	public void test_entity_mapping() {
-		assertEquals("DG course 1", course.getName());
-		assertEquals(1, course.getAddress().getId());
-		assertEquals("Bathroom", course.getAmmenities().get(0).getName());
-		assertEquals(18, course.getLength());
+		assertEquals("Denver", address.getCity());
+		assertEquals(1, address.getId());
+		assertEquals("123 Fake St.", address.getStreet());
 		
 	}
+
 }
