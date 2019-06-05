@@ -45,13 +45,11 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Address replace(int id, Address address) {
-		Address changed;
 		Optional<Address> op = repo.findById(id);
 		if (op.isPresent()) {
-			changed = op.get();
-			changed.setCity(address.getCity());
-			changed.setState(address.getState());
-			changed.setStreet(address.getStreet());
+			address.setId(op.get().getId());
+		
+			repo.saveAndFlush(address);
 		}
 		return address;
 	}

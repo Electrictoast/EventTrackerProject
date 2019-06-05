@@ -24,10 +24,10 @@ public class CourseController {
 	@Autowired
 	CourseService svc;
 	
-	@GetMapping("ping")
-	public String pingPong() {
-		return "pong";
-	}
+//	@GetMapping("ping")
+//	public String pingPong() {
+//		return "pong";
+//	}
 	
 	@GetMapping("courses")
 	public List<Course> getAllCourses(){
@@ -80,6 +80,17 @@ public class CourseController {
 			resp.setStatus(418);
 		}
 		return success;
+	}
+	@GetMapping("courses/{keyword}")
+	public List<Course> findByNameOrDescription(@PathVariable String keyword, HttpServletResponse resp){
+		List<Course> courses = svc.findByNameOrDescription(keyword);
+		if(courses != null) {
+			resp.setStatus(200);
+			return courses;
+		}else {
+			resp.setStatus(404);
+			return null;
+		}
 	}
 
 

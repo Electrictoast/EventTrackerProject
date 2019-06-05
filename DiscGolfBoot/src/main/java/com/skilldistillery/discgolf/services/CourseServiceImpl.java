@@ -45,22 +45,13 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public Course replace(int id, Course course) {
-		Course changed = null;
 		Optional<Course> op = repo.findById(id);
 		if (op.isPresent()) {
-			changed = op.get();
-			changed.setName(course.getName());
-			changed.setLength(course.getLength());
-			changed.setDescription(course.getDescription());
-			if(course.getAddress() != null) {
-				changed.setAddress(course.getAddress());
-			}
-			if(course.getAmmenities() != null) {
-				changed.setAmmenities(course.getAmmenities());
-			}
+			course.setId(op.get().getId());
 					
 		}
-		return changed;
+		repo.saveAndFlush(course);
+		return course;
 	}
 
 	@Override
@@ -72,6 +63,28 @@ public class CourseServiceImpl implements CourseService {
 		}else {
 			return false;
 		}
+	}
+
+	@Override
+	public List<Course> findByNameOrDescription(String keyword) {
+		List<Course> courses = repo.findByNameorDescription(keyword);
+		if(courses != null) {
+			if(courses.size()>0) {
+				return courses;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public List<Course> findByLength(Integer length) {
+		List<Course> courses = repo.findByLength(length);
+		if(courses != null) {
+			if(courses.size()>0) {
+				return courses;
+			}
+		}
+		return null;
 	}
 
 }

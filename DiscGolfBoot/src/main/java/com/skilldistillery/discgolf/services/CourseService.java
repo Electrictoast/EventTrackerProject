@@ -10,5 +10,7 @@ public interface CourseService {
 	Course create(Course course);
 	Course replace(int id , Course course);
 	Boolean deleteById(int id);
+	List<Course> findByNameOrDescription(String keyword);
+	List<Course> findByLength(Integer length);
 
 }
