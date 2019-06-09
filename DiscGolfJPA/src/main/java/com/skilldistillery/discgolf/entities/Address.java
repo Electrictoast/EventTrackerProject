@@ -17,6 +17,8 @@ public class Address {
 	private String street;
 	
 	private String state;
+	
+	private String zip;
 
 	@Override
 	public String toString() {
@@ -76,6 +78,15 @@ public class Address {
 	public void setState(String state) {
 		this.state = state;
 	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+	
 	
 	
 

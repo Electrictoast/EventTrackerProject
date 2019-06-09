@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.skilldistillery.discgolf.entities.Ammenity;
 import com.skilldistillery.discgolf.entities.Course;
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
@@ -15,6 +16,11 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	@Query("select c from Course c where name Like :keyword or description Like :keyword")
 	List<Course> findByNameorDescription(@Param("keyword") String keyword);
 	
+	@Query("select c from Course c where :ammenity in c.ammenities")
+	List<Course> findByAmmenity(@Param("ammenity") Ammenity ammenity);
 	
+	List<Course> findByAddressCity(String city);
+	
+	List<Course> findByAddressZip(String zip);
 
 }

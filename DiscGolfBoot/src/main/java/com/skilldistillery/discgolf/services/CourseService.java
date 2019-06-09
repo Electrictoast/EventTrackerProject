@@ -12,5 +12,6 @@ public interface CourseService {
 	Boolean deleteById(int id);
 	List<Course> findByNameOrDescription(String keyword);
 	List<Course> findByLength(Integer length);
-
+	List<Course> findByAmmenity(Integer id);
+	List<Course> findByZip(String zip);
 }

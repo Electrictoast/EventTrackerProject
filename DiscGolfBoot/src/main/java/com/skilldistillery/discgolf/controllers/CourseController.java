@@ -81,7 +81,8 @@ public class CourseController {
 		}
 		return success;
 	}
-	@GetMapping("courses/{keyword}")
+//	keyword and zip are strings maybe conflict
+	@GetMapping("courses/search/keyword/{keyword}")
 	public List<Course> findByNameOrDescription(@PathVariable String keyword, HttpServletResponse resp){
 		List<Course> courses = svc.findByNameOrDescription(keyword);
 		if(courses != null) {
@@ -92,6 +93,39 @@ public class CourseController {
 			return null;
 		}
 	}
-
+//	length and id are both ints may cause conflict
+	@GetMapping("courses/search/{length}")
+	public List<Course> findByLength(@PathVariable Integer length, HttpServletResponse resp){
+		List<Course> courses = svc.findByLength(length);
+		if(courses != null) {
+			resp.setStatus(200);
+			return courses;
+		}else {
+			resp.setStatus(404);
+			return null;
+		}
+	}
+	@GetMapping("courses/ammenities/{id}")
+	public List<Course> findByAmmenityId(@PathVariable Integer id, HttpServletResponse resp){
+		List<Course> courses = svc.findByAmmenity(id);
+		if(courses != null) {
+			resp.setStatus(200);
+			return courses;
+		}else {
+			resp.setStatus(404);
+			return null;
+		}
+	}
+	@GetMapping("courses/addresses/{zip}")
+	public List<Course> findByZip(@PathVariable String zip, HttpServletResponse resp){
+		List<Course> courses = svc.findByZip(zip);
+		if(courses != null) {
+			resp.setStatus(200);
+			return courses;
+		}else {
+			resp.setStatus(404);
+			return null;
+		}
+	}
 
 }
