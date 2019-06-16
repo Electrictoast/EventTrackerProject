@@ -1,26 +1,4 @@
-<!-- <h1>Welcome to Disc Golf something</h1>
-<button type="button" id="getAll">Browse</button>
-<form name="courseForm">
-  <input type="number" name="courseId" />
-  <button name="lookup">Get Course by Id</button>
-</form>
 
-<div id="output">
-  <div id="listCourses"></div>
-  <div id="courseData"></div>
-  <div id="addressData"></div>
-</div>
-
-<h1>Make a new course</h1>
-
-<form name="makeCourse">
-  name:<input name="name" /><br />
-  description:<input name="description" /><br />
-  length:<input type="number" name="length" /><br />
-  <input type="submit" name="splork" value="submit" />
-</form> -->
-
-<!-- new stuff  -->
 <div *ngIf="editCourse">
   <form>
     Name:<input type="text" value="selected.name" name="task" [(ngModel)]="editCourse.name"/><br />
@@ -28,7 +6,6 @@
     Length:<input type="number" value="selected.Length" name="task" [(ngModel)]="editCourse.length"/><br />
 
     Description:<br><textarea name="description" rows="10" cols="30"  [(ngModel)]="editCourse.description">{{selected.description}}</textarea><br />
-
     <button class="btn" (click)="selected = editCourse; updateCourse(selected); editCourse = null"> submit</button>
     <button class="btn" (click)="editCourse = null">Cancel</button>
   </form>
@@ -40,7 +17,7 @@
     <h4>{{selected.address.street}}</h4>
     <h4>{{selected.address.city}}</h4>
     <h5>{{selected.description}}</h5>
-
+    <ngb-rating [(rate)]="ratingValue"></ngb-rating><button (click)='rateCourse()'>Rate</button><br>
     <button class="btn" (click)="setEditCourse(); reload()">Edit</button>
     <button class="btn" (click)="selected = null; reload()">Back</button>
   </div>

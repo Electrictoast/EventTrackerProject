@@ -2,6 +2,10 @@ import { CourseService } from './../../services/course.service';
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RatingService } from 'src/app/services/rating.service';
+import { Rating } from 'src/app/models/rating';
+import { log } from 'util';
+
 
 
 @Component({
@@ -13,14 +17,37 @@ export class CourseComponent implements OnInit {
 
   courses: Course[] = [];
 
+  ratingValue = 0;
+
+  newRating: Rating = new Rating();
+
   newCourse: Course = new Course();
 
-  selected = null;
+  selected: Course = null;
 
   editCourse: Course = null;
 
-  constructor(private coursesvc: CourseService, private route: ActivatedRoute) { }
+  constructor(private coursesvc: CourseService,
+              private route: ActivatedRoute,
+              private ratesvc: RatingService) { }
 
+  rateCourse() {
+    console.log(this.selected);
+    console.log(' pre assign' + this.newRating);
+    this.newRating.course = this.selected;
+    this.newRating.value = this.ratingValue;
+    console.log('post assign' + this.newRating);
+    this.ratesvc.create(this.newRating).subscribe(
+      data => {
+        this.ratingValue = 0;
+        this.newRating = null;
+        this.reload();
+      },
+
+      err => console.error('Rating failed: ' + err)
+    );
+
+  }
   averageRating(course: Course) {
     let average = 0;
     course.ratings.forEach(element => {

@@ -15,6 +15,7 @@ import { NewcourseComponent } from './components/newcourse/newcourse.component';
 import { CommonModule } from '@angular/common';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]

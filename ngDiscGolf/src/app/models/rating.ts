@@ -1,5 +1,7 @@
+import { Course } from './course';
+
 export class Rating {
   id: number;
-  courseId: number;
+  course: Course;
   value: number;
 }

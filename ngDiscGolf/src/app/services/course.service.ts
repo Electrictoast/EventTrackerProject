@@ -37,8 +37,6 @@ create(course: Course) {
       'X-Requested-With': 'XMLHttpRequest'
     })
   };
-  console.log('in create course service method ' + course.address.id);
-
   return this.http.post<any>(this.url, course, httpOptions);
 }
 update(updatecourse: Course) {
