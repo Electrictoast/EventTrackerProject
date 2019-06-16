@@ -1,8 +1,11 @@
 import { Address } from './address';
+import { Rating } from './rating';
+
 export class Course {
   id: number;
   name: string;
   length: number;
   description: string;
-  Address: Address;
+  address: Address;
+  ratings: Rating[];
 }

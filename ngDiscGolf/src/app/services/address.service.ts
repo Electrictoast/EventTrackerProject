@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Course } from '../models/course';
-import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { Address } from '../models/address';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { Course } from '../models/course';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CourseService {
-
-  private url = 'http://localhost:8082/api/courses';
+export class AddressService {
+  private url = 'http://localhost:8082/api/addresses';
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  index(): Observable<Course[]> {
+  index(): Observable<Address[]> {
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -23,25 +23,23 @@ export class CourseService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<Course[]>(this.url, httpOptions).pipe(
+    return this.http.get<Address[]>(this.url, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('KABOOM');
       })
     );
 }
-create(course: Course) {
+create(address: Address) {
   const   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
     })
   };
-  console.log('in create course service method ' + course.address.id);
-
-  return this.http.post<any>(this.url, course, httpOptions);
+  return this.http.post<any>(this.url, address, httpOptions);
 }
-update(updatecourse: Course) {
+update(updateaddress: Address) {
   const   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -49,24 +47,24 @@ update(updatecourse: Course) {
     })
   };
   return this.http.put<any>(
-      this.url + '/' + updatecourse.id,
-      updatecourse,
+      this.url + '/' + updateaddress.id,
+      updateaddress,
       httpOptions
     );
 }
 
-destroy(course: Course) {
+destroy(address: Address) {
   const   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
     })
   };
-  return this.http.delete<any>(this.url + '/' + course.id, httpOptions);
+  return this.http.delete<any>(this.url + '/' + address.id, httpOptions);
 }
 
-show(id: number): Observable<Course> {
-    return this.http.get<Course>(this.url + '/' + id);
+show(id: number): Observable<Address> {
+    return this.http.get<Address>(this.url + '/' + id);
 }
 
 }

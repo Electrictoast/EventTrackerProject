@@ -11,6 +11,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NewcourseComponent } from './components/newcourse/newcourse.component';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -21,13 +24,15 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HomeComponent,
     NavbarComponent,
     NotFoundComponent,
+    NewcourseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    CommonModule
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]

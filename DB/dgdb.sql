@@ -40,9 +40,8 @@ CREATE TABLE IF NOT EXISTS `course` (
   `name` VARCHAR(400) NOT NULL,
   `length` INT NOT NULL,
   `description` TEXT NULL,
-  `address_id` INT NOT NULL,
+  `address_id` INT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC),
   INDEX `fk_course_address1_idx` (`address_id` ASC),
   CONSTRAINT `fk_course_address1`
     FOREIGN KEY (`address_id`)
@@ -107,7 +106,7 @@ DROP TABLE IF EXISTS `rating` ;
 CREATE TABLE IF NOT EXISTS `rating` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `course_id` INT NOT NULL,
-  `value` DECIMAL(2,1) NOT NULL,
+  `value` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_rating_course1_idx` (`course_id` ASC),
   CONSTRAINT `fk_rating_course1`
@@ -218,7 +217,23 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `dgdb`;
-INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (1, 1, 9.5);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (1, 1, 9);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (2, 1, 8);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (3, 1, 7);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (4, 1, 8);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (5, 1, 7);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (6, 2, 5);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (7, 3, 6);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (8, 3, 8);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (9, 3, 8);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (10, 4, 7);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (11, 4, 6);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (12, 4, 7);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (13, 5, 4);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (14, 5, 6);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (15, 3, 8);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (16, 2, 4);
+INSERT INTO `rating` (`id`, `course_id`, `value`) VALUES (17, 4, 9);
 
 COMMIT;
 

@@ -16,8 +16,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	@Query("select c from Course c where name Like :keyword or description Like :keyword")
 	List<Course> findByNameorDescription(@Param("keyword") String keyword);
 	
-	@Query("select c from Course c where :ammenity in c.ammenities")
-	List<Course> findByAmmenity(@Param("ammenity") Ammenity ammenity);
+	List<Course> findByAmmenities_Id(Integer id);
 	
 	List<Course> findByAddressCity(String city);
 	

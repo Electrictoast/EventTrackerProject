@@ -172,7 +172,7 @@ function editCourse(course){
 
   var xhr = new XMLHttpRequest();
 
-  xhr.open('Put', 'http://localhost:8082/api/courses/' + course.id);
+  xhr.open('Put', 'api/courses/' + course.id);
   xhr.setRequestHeader("content-type", "application/json");
 
   xhr.onreadystatechange = function() {
@@ -190,6 +190,7 @@ function editCourse(course){
     name: form.name.value,
     description: form.description.value,
     length: form.length.value,
+    address: course.address
   };
   xhr.send(JSON.stringify(courseObject));
 }
@@ -199,6 +200,9 @@ function displayAddress(address) {
   addressData.textContent = '';
   var div = document.createElement('div');
   div.textContent = 'Street : ' + address.street;
+  addressData.appendChild(div);
+  div = document.createElement('div');
+  div.textContent = 'City : ' + address.city;
   addressData.appendChild(div);
   div = document.createElement('div');
   div.textContent = 'State : ' + address.state;
@@ -229,6 +233,17 @@ function showEditAddress(address){
   input.type = 'text';
   input.name = 'street';
   input.value = address.street;
+  form.appendChild(input);
+  form.appendChild(document.createElement('br'));
+
+  var city = document.createElement('h3');
+  city.textContent = 'City:';
+  form.appendChild(city);
+
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.name = 'city';
+  input.value = address.city;
   form.appendChild(input);
   form.appendChild(document.createElement('br'));
 
@@ -269,7 +284,7 @@ function showEditAddress(address){
 function editAddress(address){
   var xhr = new XMLHttpRequest();
 
-  xhr.open('Put', 'http://localhost:8082/api/addresses/' + address.id);
+  xhr.open('Put', 'api/addresses/' + address.id);
   xhr.setRequestHeader("content-type", "application/json");
 
   xhr.onreadystatechange = function() {
@@ -284,6 +299,8 @@ function editAddress(address){
   };
   var form = document.getElementById('editAddress');
   let addressObject = {
+    id: address.id,
+    city: form.city.value,
     street: form.street.value,
     state: form.state.value,
     zip: form.zip.value,
@@ -296,7 +313,7 @@ function addcourse(e) {
 
   var xhr = new XMLHttpRequest();
 
-  xhr.open('Post', 'http://localhost:8082/api/courses/');
+  xhr.open('Post', 'api/courses/');
   xhr.setRequestHeader("content-type", "application/json");
 
   xhr.onreadystatechange = function() {

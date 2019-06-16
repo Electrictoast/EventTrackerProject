@@ -118,6 +118,15 @@ public class Course {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+	
 	
 	
 }

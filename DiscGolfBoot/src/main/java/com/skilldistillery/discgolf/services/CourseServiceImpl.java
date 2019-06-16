@@ -94,15 +94,10 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> findByAmmenity(Integer id) {
 		List<Course> courses;
-		Ammenity ammenity = null;
-		Optional<Ammenity> op = amrepo.findById(id);
-		if(op.isPresent()) {
-			ammenity = op.get();
-			courses = repo.findByAmmenity(ammenity);
+
+			courses = repo.findByAmmenities_Id(id);
 			return courses;
-		}else {
-			return null;
-		}
+
 	}
 
 	@Override
